@@ -1661,6 +1661,9 @@ function desktop_environment() {
         "deepin" )
             desktop_environment_deepin
             ;;
+        "awesome" )
+            desktop_environment_awesome
+            ;;
     esac
 
     arch-chroot /mnt systemctl set-default graphical.target
@@ -1683,6 +1686,11 @@ function desktop_environment_xfce() {
 
 function desktop_environment_mate() {
     pacman_install "mate mate-extra lightdm lightdm-gtk-greeter xorg-server"
+    arch-chroot /mnt systemctl enable lightdm.service
+}
+
+function desktop_environment_awesome() {
+    pacman_install "awesome lightdm lightdm-gtk-greeter dmenu rxvt-unicode xorg-server"
     arch-chroot /mnt systemctl enable lightdm.service
 }
 
